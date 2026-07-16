@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landscape → UB → SGD → UI/UX → Ecosystem · Ukubona LLC</title>
+<link rel="icon" href="https://abikesa.github.io/favicon/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  (function(){
+    const t = localStorage.getItem('ukubona-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+  :root[data-theme="dark"] {
+    --bg: #0d0d0f; --bg2: #13131a; --bg3: #1a1a24;
+    --text: #e8e4db; --text-dim: #8a8580; --text-dimmer: #4a4845;
+    --amber: #c8922a; --amber-glow: #e0a83a;
+    --violet: #9c3a44; --violet-light: #c66a6a;
+    --border: rgba(200,146,42,0.15); --border-dim: rgba(200,146,42,0.07);
+    --logo: url('https://abikesa.github.io/logos/ukubona-dark-logo.svg');
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f2eb; --bg2: #edeae2; --bg3: #e4e0d6;
+    --text: #1a1814; --text-dim: #6b6560; --text-dimmer: #bab5ae;
+    --amber: #9a6e1a; --amber-glow: #b8820a;
+    --violet: #7a2a34; --violet-light: #9c4a4a;
+    --border: rgba(154,110,26,0.2); --border-dim: rgba(154,110,26,0.08);
+    --logo: url('https://abikesa.github.io/logos/ukubona-light-logo.svg');
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:17px;line-height:1.75;transition:background .3s,color .3s;}
+  nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;backdrop-filter:blur(12px);}
+  .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--text);}
+  .nav-logo-img{width:28px;height:28px;background-image:var(--logo);background-size:contain;background-repeat:no-repeat;background-position:center;animation:spin 20s linear infinite;flex-shrink:0;}
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  .nav-wordmark{font-family:'DM Serif Display',serif;font-size:1rem;letter-spacing:.02em;color:var(--amber);}
+  .nav-links{display:flex;align-items:center;gap:1.4rem;list-style:none;}
+  .nav-links a{font-size:.76rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);text-decoration:none;transition:color .2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--amber);}
+  .theme-toggle{background:none;border:1px solid var(--border);color:var(--text-dim);padding:.25rem .6rem;border-radius:4px;cursor:pointer;font-family:'DM Mono',monospace;font-size:.7rem;}
+  .theme-toggle:hover{color:var(--amber);border-color:var(--amber);}
+
+  .hero{min-height:80vh;display:flex;flex-direction:column;justify-content:center;padding:6rem 2rem 3rem;max-width:900px;margin:0 auto;}
+  .hero-eyebrow{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--violet-light);margin-bottom:1.5rem;}
+  .hero-title{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5.6vw,3.6rem);line-height:1.1;margin-bottom:1rem;}
+  .hero-title em{font-style:italic;color:var(--amber);}
+  .hero-subtitle{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(1rem,2.4vw,1.25rem);color:var(--text-dim);margin-bottom:2.5rem;max-width:640px;}
+  .hero-rule{width:80px;height:2px;background:linear-gradient(90deg,var(--amber),transparent);margin-bottom:2rem;}
+  .hero-abstract{max-width:640px;color:var(--text-dim);font-size:1rem;}
+
+  /* THE PENTAD BAR — exactly five, nothing appended */
+  .pentad-bar{position:relative;margin:3.5rem 0 1rem;padding:2rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+  .pentad-bar::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--violet),var(--amber),var(--violet-light));}
+  .pentad-label{font-family:'DM Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:var(--text-dimmer);margin-bottom:1rem;}
+  .pentad-track{display:flex;gap:6px;align-items:flex-end;height:44px;margin-bottom:.75rem;}
+  .pentad-seg{flex:1;border-radius:2px 2px 0 0;}
+  .pentad-names{display:flex;gap:6px;}
+  .pentad-name{flex:1;font-family:'DM Mono',monospace;font-size:.64rem;text-align:center;color:var(--text-dimmer);padding-top:.35rem;}
+  .pentad-name.final{color:var(--amber);font-weight:600;}
+  .pentad-caption{margin-top:1rem;font-size:.85rem;color:var(--text-dim);font-style:italic;}
+
+  main{max-width:780px;margin:0 auto;padding:0 2rem 6rem;}
+  section{margin-bottom:5rem;scroll-margin-top:72px;}
+  .stage-num{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--violet-light);margin-bottom:.75rem;}
+  h2{font-family:'DM Serif Display',serif;font-size:clamp(1.5rem,3.4vw,2rem);line-height:1.25;margin-bottom:1.5rem;}
+  p{margin-bottom:1.25rem;color:var(--text-dim);}
+  strong{color:var(--text);font-weight:600;}
+  em{font-style:italic;color:var(--amber-glow);}
+
+  .zinger{margin:2.5rem 0;padding:1.75rem 2rem;border-left:3px solid var(--amber);background:var(--bg2);}
+  .zinger p{font-family:'DM Serif Display',serif;font-size:clamp(1.02rem,2.4vw,1.2rem);color:var(--text);line-height:1.5;margin-bottom:0;}
+
+  /* THE ONE PERMITTED SUB-PENTAD — five rungs, ending at Sawubona, glossed as Ecosystem */
+  .chain-five{margin:2.5rem 0;border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+  .chain-row{display:grid;grid-template-columns:2rem 1fr 2.4fr;border-bottom:1px solid var(--border-dim);}
+  .chain-row:last-child{border-bottom:none;}
+  .chain-row.header{background:var(--bg3);}
+  .chain-cell{padding:.85rem 1rem;font-size:.82rem;}
+  .chain-row.header .chain-cell{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dimmer);}
+  .chain-glyph{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--amber);display:flex;align-items:center;justify-content:center;padding:.85rem .5rem;}
+  .chain-name{font-weight:600;color:var(--text);}
+  .chain-gloss{font-family:'DM Mono',monospace;font-size:.74rem;color:var(--violet-light);}
+  .chain-row.terminal{border-top:2px solid var(--amber);}
+  .chain-row.terminal .chain-glyph{color:var(--amber);}
+
+  footer{border-top:1px solid var(--border);padding:2.5rem 2rem;max-width:780px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .footer-mark{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--text-dimmer);letter-spacing:.08em;}
+  .footer-mark span{color:var(--amber);}
+
+  @media(max-width:640px){
+    nav{padding:0 1rem;} .nav-links{gap:1rem;} .nav-links li:not(:last-child){display:none;}
+    .hero{padding:4rem 1rem 2rem;} main{padding:0 1rem 4rem;}
+    .chain-row{grid-template-columns:1.5rem 1fr;} .chain-gloss{display:none;}
+    footer{padding:2rem 1rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-img" role="img" aria-label="Ukubona rotating logo"></div>
+    <span class="nav-wordmark">Ukubona</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#s1">Landscape</a></li>
+    <li><a href="#s2">UB</a></li>
+    <li><a href="#s3">SGD</a></li>
+    <li><a href="#s4">UI/UX</a></li>
+    <li><a href="#s5">Ecosystem</a></li>
+  </ul>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">◑</button>
+</nav>
+
+<div class="hero" id="hero">
+  <div class="hero-eyebrow">Ukubona LLC · Field Note · 2026</div>
+  <h1 class="hero-title">Five stages.<br><em>No sixth.</em></h1>
+  <p class="hero-subtitle">Landscape → UB → SGD → UI/UX → Ecosystem</p>
+  <div class="hero-rule"></div>
+  <p class="hero-abstract">
+    A tradition trains the surface. A room supplies the live, noisy signal.
+    A real-time loop updates on that signal, under pressure. What survives
+    is a fossil — a chord, a take, a page. And a peer, reading that fossil,
+    recognizes the years it took to earn it. Five stages, each producing
+    the next. Nothing added after the fifth.
+  </p>
+
+  <div class="pentad-bar">
+    <div class="pentad-label">The pentad, in order of causation</div>
+    <div class="pentad-track">
+      <div class="pentad-seg" style="height:35%;background:var(--violet);opacity:.55;"></div>
+      <div class="pentad-seg" style="height:50%;background:var(--violet);opacity:.7;"></div>
+      <div class="pentad-seg" style="height:68%;background:var(--violet-light);opacity:.8;"></div>
+      <div class="pentad-seg" style="height:84%;background:var(--amber);opacity:.85;"></div>
+      <div class="pentad-seg" style="height:100%;background:var(--amber);"></div>
+    </div>
+    <div class="pentad-names">
+      <div class="pentad-name">I · Landscape</div>
+      <div class="pentad-name">II · UB</div>
+      <div class="pentad-name">III · SGD</div>
+      <div class="pentad-name">IV · UI/UX</div>
+      <div class="pentad-name final">V · Ecosystem</div>
+    </div>
+    <div class="pentad-caption">Each bar is taller because each stage depends on the one before it. There is no stage VI.</div>
+  </div>
+</div>
+
+<main>
+
+  <section id="s1">
+    <div class="stage-num">I · Landscape</div>
+    <h2>The corpus a lifetime is trained on.</h2>
+    <p>Not a genre — a loss surface. Andraé Crouch, the Winans, BeBe &amp; CeCe, Fred Hammond, Commissioned, Mary Mary: decades of Sunday mornings, theological weight, collective memory, laid down before anyone touches a key. A childhood in the house, not a tourist's visit to the tradition.</p>
+    <p>This is the terrain every chord gets voiced against. It never appears in a transcript. It's the reason the transcript needed to exist — and the reason it will always undersell what actually happened.</p>
+  </section>
+
+  <section id="s2">
+    <div class="stage-num">II · UB — the Room</div>
+    <h2>Raw, noisy, unnotatable signal.</h2>
+    <p>The stamping feet. The reframe. The sudden, unpredictable "Amen!" from the back pew. Full of measurement error, by design — you can't fully notate the kinetic energy of three hundred people moving together.</p>
+    <p>This is the input nobody wrote down, and the one every real chord was actually responding to. Music built in real time by the congregation's answer, not composed in advance.</p>
+  </section>
+
+  <section id="s3">
+    <div class="stage-num">III · SGD</div>
+    <h2>The live, sub-second optimization loop.</h2>
+    <p>The preacher changes cadence. The room erupts or falls silent. The organist re-voices the chord — the dim7 leaning into the dominant, the sus4 held a beat too long — before there's time to think. That loop repeats continuously, driving the room toward its maximum, and it only runs where stage II is happening: live, with stakes.</p>
+    <p>Berklee gives the grammar to name the chord it produces. Neither grammar nor a keyboard gives you the thousands of live steps that trained the hand to do it in under a second. That's not a knowledge gap — it's a reps gap, and it closes only here.</p>
+  </section>
+
+  <section id="s4">
+    <div class="stage-num">IV · UI/UX</div>
+    <h2>What stage III leaves behind.</h2>
+    <p>The chord. The take. The polished page with the elegant typography. This is the fossil — the only part of the loop that survives it, and the only part a page, a recording, or an HTML file can actually hold.</p>
+    <div class="zinger">
+      <p>Okubala si Kulaba — the setlist is the tensor; the notes below are the Jacobian. True of the loop that made them. Not true of a page that only counts them.</p>
+    </div>
+    <p>A fossil is not nothing. It's the necessary residue of stage III — but by itself it's still just counting. What happens to it next is the whole point of stage V.</p>
+  </section>
+
+  <section id="s5">
+    <div class="stage-num">V · Ecosystem</div>
+    <h2>Siyabonana — reading the fossil back into the loop.</h2>
+    <p>When BeBe, CeCe, and Mary Mary trade a knowing smile on stage, they're reading the stage-IV fossil and reconstructing the stage-III loop that produced it. Not "nice chord." <em>I know exactly why you went there.</em> The artifact is never the message. The trajectory is.</p>
+
+    <div class="chain-five">
+      <div class="chain-row header">
+        <div class="chain-cell"></div>
+        <div class="chain-cell">Form</div>
+        <div class="chain-cell">What it carries</div>
+      </div>
+      <div class="chain-row">
+        <div class="chain-glyph">1</div>
+        <div class="chain-cell"><span class="chain-name">Okubonabona</span></div>
+        <div class="chain-cell chain-gloss">seeing yourself see</div>
+      </div>
+      <div class="chain-row">
+        <div class="chain-glyph">2</div>
+        <div class="chain-cell"><span class="chain-name">Kubona</span></div>
+        <div class="chain-cell chain-gloss">to see, to perceive</div>
+      </div>
+      <div class="chain-row">
+        <div class="chain-glyph">3</div>
+        <div class="chain-cell"><span class="chain-name">Ibyabona</span></div>
+        <div class="chain-cell chain-gloss">the things seen, settling into pattern</div>
+      </div>
+      <div class="chain-row">
+        <div class="chain-glyph">4</div>
+        <div class="chain-cell"><span class="chain-name">Ukubona</span></div>
+        <div class="chain-cell chain-gloss">seeing become understanding</div>
+      </div>
+      <div class="chain-row terminal">
+        <div class="chain-glyph">5</div>
+        <div class="chain-cell"><span class="chain-name">Sawubona</span></div>
+        <div class="chain-cell chain-gloss">"I see you" — one recognition, once</div>
+      </div>
+    </div>
+
+    <p>Ecosystem is the plural, standing form of that fifth term: <strong>Siyabonana</strong> — we keep seeing each other. Not one Sawubona but a tradition of musicians who keep recognizing each other's choices across decades, records, and rooms. That's what closes the pentad. Nothing comes after it.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-mark">I Landscape → II UB → III SGD → IV UI/UX → V <span>Ecosystem</span></div>
+  <div class="footer-mark">Ukubona LLC · 2026 · Okubala si Kulaba</div>
+</footer>
+
+<script>
+  function toggleTheme(){
+    const root=document.documentElement;
+    const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    localStorage.setItem('ukubona-theme',next);
+  }
+  const sections=document.querySelectorAll('section[id]');
+  const navLinks=document.querySelectorAll('.nav-links a');
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  sections.forEach(s=>obs.observe(s));
+</script>
+
+</body>
+</html>
